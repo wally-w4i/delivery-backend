@@ -13,6 +13,7 @@ public class Mapper {
                 .id(c.getId())
                 .description(c.getDescription())
                 .address(c.getAddress())
+                .gpsPosition(toDTO(c.getGpsPosition()))
                 .build();
     }
 
@@ -20,7 +21,6 @@ public class Mapper {
         if (gps == null) return null;
 
         return GpsPositionDTO.builder()
-                .id(gps.getId())
                 .latitude(gps.getLatitude())
                 .longitude(gps.getLongitude())
                 .build();

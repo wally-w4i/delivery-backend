@@ -10,9 +10,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class GpsPositionDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private Double latitude;
     private Double longitude;
 }

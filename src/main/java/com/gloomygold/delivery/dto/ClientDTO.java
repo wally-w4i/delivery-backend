@@ -10,4 +10,5 @@ public class ClientDTO {
     private Long id;
     private String description;
     private String address;
+    private GpsPositionDTO gpsPosition;
 }
