@@ -1,8 +1,10 @@
 package com.gloomygold.delivery.service;
 
 import com.gloomygold.delivery.dto.ClientDTO;
+import com.gloomygold.delivery.dto.GpsPositionDTO;
 import com.gloomygold.delivery.mapper.Mapper;
 import com.gloomygold.delivery.model.Client;
+import com.gloomygold.delivery.model.GpsPosition;
 import com.gloomygold.delivery.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +49,18 @@ public class ClientServiceImpl implements ClientService{
             throw new RuntimeException("No client found to delete");
 
         repo.deleteById(id);
+    }
+
+    @Override
+    public GpsPositionDTO updateGpsPosition(Long id, GpsPositionDTO gps) {
+        Client saved = repo.findById(id).orElseThrow(() -> new RuntimeException("No client found to update gps position"));
+
+        GpsPosition gpsPosition = GpsPosition.builder()
+                .latitude(gps.getLatitude())
+                .longitude(gps.getLongitude())
+                .build();
+        saved.setGpsPosition(gpsPosition);
+
+        return Mapper.toDTO(repo.save(saved).getGpsPosition());
     }
 }
