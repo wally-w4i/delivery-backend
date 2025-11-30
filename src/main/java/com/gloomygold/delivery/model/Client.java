@@ -1,9 +1,6 @@
 package com.gloomygold.delivery.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter @Setter
@@ -17,4 +14,7 @@ public class Client {
     private Long id;
     private String description;
     private String address;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private GpsPosition gpsPosition;
 }

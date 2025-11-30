@@ -1,6 +1,8 @@
 package com.gloomygold.delivery.controller;
 
 import com.gloomygold.delivery.dto.ClientDTO;
+import com.gloomygold.delivery.dto.GpsPositionDTO;
+import com.gloomygold.delivery.model.GpsPosition;
 import com.gloomygold.delivery.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +40,10 @@ public class ClientController {
     public ResponseEntity<Void> deleteClient(@PathVariable Long id) {
         service.remove(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{clientId}/gps-position")
+    public ResponseEntity<GpsPositionDTO> updateGpsPosition(@PathVariable Long clientId, @RequestBody GpsPositionDTO gps) {
+        return ResponseEntity.ok(service.updateGpsPosition(clientId, gps));
     }
 }
