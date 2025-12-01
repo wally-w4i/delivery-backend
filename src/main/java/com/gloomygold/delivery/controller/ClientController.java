@@ -42,8 +42,4 @@ public class ClientController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{clientId}/gps-position")
-    public ResponseEntity<GpsPositionDTO> updateGpsPosition(@PathVariable Long clientId, @RequestBody GpsPositionDTO gps) {
-        return ResponseEntity.ok(service.updateGpsPosition(clientId, gps));
-    }
 }
