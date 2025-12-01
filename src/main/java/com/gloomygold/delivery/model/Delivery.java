@@ -20,5 +20,5 @@ public class Delivery {
     private String status;
 
     @OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL)
-    private List<DeliveryDetail> detail = new ArrayList<>();
+    private List<DeliveryDetail> details = new ArrayList<>();
 }

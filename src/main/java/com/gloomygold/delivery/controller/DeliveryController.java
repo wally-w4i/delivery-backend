@@ -10,22 +10,23 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @Controller
 @RequestMapping("/api/deliveries")
 public class DeliveryController {
 
-    @Autowired
-    private DeliveryService service;
+  @Autowired
+  private DeliveryService service;
 
-    @GetMapping
-    public ResponseEntity<List<DeliveryDTO>> getDeliveries() {
-        return ResponseEntity.ok(service.getDeliveries());
-    }
+  @GetMapping
+  public ResponseEntity<List<DeliveryDTO>> getDeliveries() {
+    return ResponseEntity.ok(service.getDeliveries());
+  }
 
-    @PostMapping
-    public ResponseEntity<DeliveryDTO> createDelivery(@RequestBody DeliveryDTO d) {
-        DeliveryDTO created = service.createDelivery(d);
-        return ResponseEntity.created(URI.create("/api/deliveries")).body(created);
-    }
+  @PostMapping
+  public ResponseEntity<DeliveryDTO> createDelivery(@RequestBody DeliveryDTO d) {
+    DeliveryDTO created = service.createDelivery(d);
+    return ResponseEntity.created(URI.create("/api/deliveries")).body(created);
+  }
 
 }

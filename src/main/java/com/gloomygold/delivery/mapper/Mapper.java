@@ -37,6 +37,16 @@ public class Mapper {
                 .id(d.getId())
                 .date(d.getDate())
                 .status(d.getStatus())
+                .details(d.getDetails().stream().map(Mapper::toDTO).toList())
+                .build();
+    }
+
+    public static DeliveryDetailDTO toDTO(DeliveryDetail dd) {
+        if (dd == null) return null;
+
+        return DeliveryDetailDTO.builder()
+                .clientId(dd.getClient().getId())
+                .status(dd.getStatus())
                 .build();
     }
 
