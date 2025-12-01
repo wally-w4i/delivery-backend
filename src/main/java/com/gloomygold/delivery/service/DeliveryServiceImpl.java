@@ -33,7 +33,7 @@ public class DeliveryServiceImpl implements DeliveryService{
     public DeliveryDTO createDelivery(DeliveryDTO deliveryDTO) {
 
         if (deliveryDTO == null) throw new RuntimeException("DeliveryDTO is null");
-        if (deliveryDTO.getDetail() == null || deliveryDTO.getDetail().isEmpty()) throw new RuntimeException("Must include at least one client");
+        if (deliveryDTO.getDetails() == null || deliveryDTO.getDetails().isEmpty()) throw new RuntimeException("Must include at least one client");
 
         Delivery created = Delivery.builder()
                 .date(LocalDate.now())
@@ -42,7 +42,7 @@ public class DeliveryServiceImpl implements DeliveryService{
 
         List<DeliveryDetail> details = new ArrayList<>();
 
-        for (DeliveryDetailDTO detDTO: deliveryDTO.getDetail()) {
+        for (DeliveryDetailDTO detDTO: deliveryDTO.getDetails()) {
             Client client = clientRepository.findById(detDTO.getClientId()).orElse(null);
             if (client == null)
                 throw new RuntimeException("Client not found: " + detDTO.getClientId());
@@ -54,7 +54,7 @@ public class DeliveryServiceImpl implements DeliveryService{
             details.add(deliveryDetail);
         }
 
-        created.setDetail(details);
+        created.setDetails(details);
 
         return Mapper.toDTO(deliveryRepository.save(created));
     }

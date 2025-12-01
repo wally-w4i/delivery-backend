@@ -1,7 +1,5 @@
 package com.gloomygold.delivery.dto;
 
-import com.gloomygold.delivery.model.DeliveryDetail;
-import jakarta.persistence.OneToMany;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -17,5 +15,5 @@ public class DeliveryDTO {
     private LocalDate date;
     private String status;
 
-    private List<DeliveryDetailDTO> detail = new ArrayList<>();
+    private List<DeliveryDetailDTO> details = new ArrayList<>();
 }
