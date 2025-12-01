@@ -1,8 +1,12 @@
 package com.gloomygold.delivery.mapper;
 
 import com.gloomygold.delivery.dto.ClientDTO;
+import com.gloomygold.delivery.dto.DeliveryDTO;
+import com.gloomygold.delivery.dto.DeliveryDetailDTO;
 import com.gloomygold.delivery.dto.GpsPositionDTO;
 import com.gloomygold.delivery.model.Client;
+import com.gloomygold.delivery.model.Delivery;
+import com.gloomygold.delivery.model.DeliveryDetail;
 import com.gloomygold.delivery.model.GpsPosition;
 
 public class Mapper {
@@ -25,4 +29,15 @@ public class Mapper {
                 .longitude(gps.getLongitude())
                 .build();
     }
+
+    public static DeliveryDTO toDTO(Delivery d) {
+        if (d == null) return null;
+
+        return DeliveryDTO.builder()
+                .id(d.getId())
+                .date(d.getDate())
+                .status(d.getStatus())
+                .build();
+    }
+
 }

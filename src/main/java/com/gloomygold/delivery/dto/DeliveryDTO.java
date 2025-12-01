@@ -1,0 +1,21 @@
+package com.gloomygold.delivery.dto;
+
+import com.gloomygold.delivery.model.DeliveryDetail;
+import jakarta.persistence.OneToMany;
+import lombok.*;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class DeliveryDTO {
+    private Long id;
+    private LocalDate date;
+    private String status;
+
+    private List<DeliveryDetailDTO> detail = new ArrayList<>();
+}
