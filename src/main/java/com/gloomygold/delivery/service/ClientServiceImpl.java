@@ -27,6 +27,10 @@ public class ClientServiceImpl implements ClientService{
         Client created = Client.builder()
                 .description(c.getDescription())
                 .address(c.getAddress())
+                .gpsPosition(GpsPosition.builder()
+                        .latitude(c.getGpsPosition().getLatitude())
+                        .longitude(c.getGpsPosition().getLongitude())
+                        .build())
                 .build();
 
         return Mapper.toDTO(repo.save(created));
@@ -39,7 +43,10 @@ public class ClientServiceImpl implements ClientService{
         saved.setAddress(c.getAddress());
         saved.setDescription(c.getDescription());
         saved.setAddress(c.getAddress());
-
+        saved.setGpsPosition(GpsPosition.builder()
+                .latitude(c.getGpsPosition().getLatitude())
+                .longitude(c.getGpsPosition().getLongitude())
+                .build());
         return Mapper.toDTO(repo.save(saved));
     }
 
@@ -51,16 +58,4 @@ public class ClientServiceImpl implements ClientService{
         repo.deleteById(id);
     }
 
-    @Override
-    public GpsPositionDTO updateGpsPosition(Long id, GpsPositionDTO gps) {
-        Client saved = repo.findById(id).orElseThrow(() -> new RuntimeException("No client found to update gps position"));
-
-        GpsPosition gpsPosition = GpsPosition.builder()
-                .latitude(gps.getLatitude())
-                .longitude(gps.getLongitude())
-                .build();
-        saved.setGpsPosition(gpsPosition);
-
-        return Mapper.toDTO(repo.save(saved).getGpsPosition());
-    }
 }

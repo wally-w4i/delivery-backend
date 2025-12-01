@@ -10,6 +10,4 @@ public interface ClientService {
     ClientDTO createClient(ClientDTO c);
     ClientDTO updateClient(Long id, ClientDTO c);
     void remove(Long id);
-
-    GpsPositionDTO updateGpsPosition(Long id, GpsPositionDTO gps);
 }
