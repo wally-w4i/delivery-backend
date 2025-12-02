@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5173")
 @Controller
 @RequestMapping("/api/clients")
 public class ClientController {
@@ -28,7 +27,7 @@ public class ClientController {
   @PostMapping
   public ResponseEntity<ClientDTO> createClient(@RequestBody ClientDTO c) {
     ClientDTO created = service.createClient(c);
-    return ResponseEntity.created(URI.create("/api/clients")).body(created);
+    return ResponseEntity.created(URI.create("/api/clients/"+created.getId())).body(created);
   }
 
   @PutMapping("/{id}")
