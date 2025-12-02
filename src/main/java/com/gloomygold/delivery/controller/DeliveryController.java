@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5173")
 @Controller
 @RequestMapping("/api/deliveries")
 public class DeliveryController {
@@ -26,7 +25,7 @@ public class DeliveryController {
   @PostMapping
   public ResponseEntity<DeliveryDTO> createDelivery(@RequestBody DeliveryDTO d) {
     DeliveryDTO created = service.createDelivery(d);
-    return ResponseEntity.created(URI.create("/api/deliveries")).body(created);
+    return ResponseEntity.created(URI.create("/api/deliveries/"+created.getId())).body(created);
   }
 
 }
