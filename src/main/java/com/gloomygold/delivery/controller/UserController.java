@@ -40,7 +40,7 @@ public class UserController {
         return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/authenticate")
     public ResponseEntity<?> login(@RequestBody UserDTO userDTO) {
         try {
             Authentication authentication = authenticationManager.authenticate(
