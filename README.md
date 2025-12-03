@@ -57,11 +57,25 @@ You can run the application in a couple of ways:
 2.  **Running the JAR file:**
     After building the project, navigate to the `target` directory and run the JAR file:
     ```bash
-    java -jar target/delivery-backend-0.0.1-SNAPSHOT.jar
+        java -jar target/delivery-backend-0.0.1-SNAPSHOT.jar
     ```
-
-The application will start on `http://localhost:8080` by default.
-
+    
+    The application will start on `http://localhost:8080` by default.
+    
+    3.  **Using Docker:**
+        To build and run the application using Docker, follow these steps:
+    
+        a.  **Build the Docker image:**
+            ```bash
+            docker build -t delivery-backend .
+            ```
+    
+        b.  **Run the Docker container:**
+            ```bash
+            docker run -p 8080:8080 delivery-backend
+            ```
+            The application will be accessible at `http://localhost:8080`.
+    
 ## API Endpoints
 
 The API provides the following main endpoints:
