@@ -1,6 +1,7 @@
 package com.gloomygold.delivery.controller;
 
 import com.gloomygold.delivery.config.JwtUtil;
+import com.gloomygold.delivery.dto.ErrorResponseDTO;
 import com.gloomygold.delivery.dto.LoginResponseDTO;
 import com.gloomygold.delivery.dto.UserDTO;
 import com.gloomygold.delivery.model.User;
@@ -41,17 +42,13 @@ public class UserController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<?> login(@RequestBody UserDTO userDTO) {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword())
-            );
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            final UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            final String token = jwtUtil.generateToken(userDetails);
-            return ResponseEntity.ok(new LoginResponseDTO(token));
-        } catch (Exception e) {
-            return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
-        }
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody UserDTO userDTO) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword())
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        final UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        final String token = jwtUtil.generateToken(userDetails);
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 }
