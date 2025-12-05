@@ -1,5 +1,6 @@
 package com.gloomygold.delivery.controller;
 
+import com.gloomygold.delivery.dto.ClientDTO;
 import com.gloomygold.delivery.dto.DeliveryDTO;
 import com.gloomygold.delivery.service.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class DeliveryController {
   public ResponseEntity<DeliveryDTO> createDelivery(@RequestBody DeliveryDTO d) {
     DeliveryDTO created = service.createDelivery(d);
     return ResponseEntity.created(URI.create("/api/deliveries/"+created.getId())).body(created);
+  }
+
+  @PutMapping("/{id}")
+  public ResponseEntity<DeliveryDTO> updateClient(@PathVariable Long id, @RequestBody DeliveryDTO d) {
+    return ResponseEntity.ok(service.updateDelivery(id, d));
   }
 
 }

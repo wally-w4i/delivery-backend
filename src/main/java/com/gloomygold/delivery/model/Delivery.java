@@ -19,6 +19,6 @@ public class Delivery {
     private LocalDate date;
     private String status;
 
-    @OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DeliveryDetail> details = new ArrayList<>();
 }

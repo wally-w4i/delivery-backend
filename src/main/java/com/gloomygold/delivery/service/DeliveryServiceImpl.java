@@ -6,6 +6,7 @@ import com.gloomygold.delivery.mapper.Mapper;
 import com.gloomygold.delivery.model.Client;
 import com.gloomygold.delivery.model.Delivery;
 import com.gloomygold.delivery.model.DeliveryDetail;
+import com.gloomygold.delivery.model.GpsPosition;
 import com.gloomygold.delivery.repository.ClientRepository;
 import com.gloomygold.delivery.repository.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +61,29 @@ public class DeliveryServiceImpl implements DeliveryService{
     }
 
     @Override
-    public DeliveryDTO updateDelivery(Long id, DeliveryDTO d) {
-        return null;
+    public DeliveryDTO updateDelivery(Long id, DeliveryDTO deliveryDTO) {
+        Delivery saved = deliveryRepository.findById(id).orElseThrow(() -> new RuntimeException("No delivery found to update"));
+
+        
+        saved.setDate(deliveryDTO.getDate());
+        saved.setStatus(deliveryDTO.getStatus());
+
+        // remove old details so orphanRemoval can delete them
+        saved.getDetails().clear();
+
+        for (DeliveryDetailDTO detDTO: deliveryDTO.getDetails()) {
+            Client client = clientRepository.findById(detDTO.getClientId()).orElse(null);
+            if (client == null)
+                throw new RuntimeException("Client not found: " + detDTO.getClientId());
+
+            DeliveryDetail deliveryDetail = new DeliveryDetail();
+            deliveryDetail.setClient(client);
+            deliveryDetail.setDelivery(saved);
+
+            saved.getDetails().add(deliveryDetail);
+        }
+
+        return Mapper.toDTO(deliveryRepository.save(saved));
     }
 
     @Override
