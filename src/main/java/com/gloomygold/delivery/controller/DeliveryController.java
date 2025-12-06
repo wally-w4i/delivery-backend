@@ -1,6 +1,5 @@
 package com.gloomygold.delivery.controller;
 
-import com.gloomygold.delivery.dto.ClientDTO;
 import com.gloomygold.delivery.dto.DeliveryDTO;
 import com.gloomygold.delivery.service.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;

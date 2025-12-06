@@ -6,7 +6,6 @@ import com.gloomygold.delivery.mapper.Mapper;
 import com.gloomygold.delivery.model.Client;
 import com.gloomygold.delivery.model.Delivery;
 import com.gloomygold.delivery.model.DeliveryDetail;
-import com.gloomygold.delivery.model.GpsPosition;
 import com.gloomygold.delivery.repository.ClientRepository;
 import com.gloomygold.delivery.repository.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

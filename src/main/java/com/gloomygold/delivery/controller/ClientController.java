@@ -1,8 +1,6 @@
 package com.gloomygold.delivery.controller;
 
 import com.gloomygold.delivery.dto.ClientDTO;
-import com.gloomygold.delivery.dto.GpsPositionDTO;
-import com.gloomygold.delivery.model.GpsPosition;
 import com.gloomygold.delivery.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,6 @@
 package com.gloomygold.delivery.service;
 
 import com.gloomygold.delivery.dto.ClientDTO;
-import com.gloomygold.delivery.dto.GpsPositionDTO;
 import com.gloomygold.delivery.mapper.Mapper;
 import com.gloomygold.delivery.model.Client;
 import com.gloomygold.delivery.model.GpsPosition;
