@@ -1,7 +1,6 @@
 package com.gloomygold.delivery.controller;
 
 import com.gloomygold.delivery.config.JwtUtil;
-import com.gloomygold.delivery.dto.ErrorResponseDTO;
 import com.gloomygold.delivery.dto.LoginResponseDTO;
 import com.gloomygold.delivery.dto.UserDTO;
 import com.gloomygold.delivery.model.User;
